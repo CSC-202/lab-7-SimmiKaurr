@@ -23,29 +23,40 @@ coding: dict = dict()   # key  -> a letter
 # STEP 0 - TODO
 ## defining our data structures
 class Node: # NOT given to students
-    # TODO
+    weight : int
+    letters : str
+    left: any
+    right: any
     
-    def __init__(self):
-        return
+    def __init__(self, letters = None, weight = None, left = None, right = None):
+        self.weight = weight
+        self.letters = letters
+        self.left = left
+        self.right = right
 
 ## defining operations
 ### recursively traverses the huffman tree to record the codes
 def retrieve_codes(v: Node, path: str=''):
     global coding
-    if v.letter != None: # if 'TODO': # TODO
-        coding[v.letter] = None # TODO
+    if v.letters != None: # if 'TODO': # TODO
+        coding[v.letters] = path # TODO
     else:
-        retrieve_codes(None, None) # TODO
-        retrieve_codes(None, None) # TODO
+        retrieve_codes(v.left, path + '0') # TODO
+        retrieve_codes(v.right, path + '1') # TODO
 
 # STEP 1
 ## counting the frequencies - TODO
+for i in message:
+    if i in freq:
+        freq[i] += 1
+    else:
+        freq[i] = 1
 
 
 # STEP 2
 ## initialize the nodes - TODO
-nodes = list()
-nodes.append(Node(0, 'a'))
+for letters, count in freq.items():
+    nodes.append(Node(letters, count))
 
 # STEP 3 - TODO
 ## combine each nodes until there's only one item in the nodes list
@@ -60,7 +71,7 @@ while len(nodes) > 1:
     min_b: Node = nodes.pop()
 
     ## combine the two
-    combined: Node = None # TODO
+    combined = Node(None, min_a.weight + min_b.weight, min_a, min_b) # TODO
 
     ## put the combined nodes back in the list of nodes
     nodes.append(combined)
@@ -69,7 +80,8 @@ while len(nodes) > 1:
 ## reconstruct the codes
 huff_root = nodes[0]
 retrieve_codes(huff_root)
-result: str = str() # TODO (hint coding[letter] -> code)
+for i in message:
+    result += str(coding[i]) # TODO (hint coding[letter] -> code)
 
 # STEP 5
 ## analyize compression performance
