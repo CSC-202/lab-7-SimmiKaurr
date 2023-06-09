@@ -159,11 +159,11 @@ min_idx = ratios.index(min_ratio)
 
 plt.plot(ratios[:MAX_N], label=f'One_Dance(n={len(coding)})', color ='blue', linestyle='dashdot')
 plt.legend()
-
+plt.gcf().supylabel("compression %")
 
 # PLOT 2
 plt.subplot(2, 1, 2)
-plt.ylabel("compression %")
+
 
 ## SELF LOVE
 data: str = SELF_LOVE
